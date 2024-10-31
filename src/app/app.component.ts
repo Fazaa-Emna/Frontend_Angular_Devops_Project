@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NomDuServiceService } from './nom-du-service.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { contrat } from './Contrat';
+import { piste } from './Piste';
 
 @Component({
   selector: 'app-root',
@@ -13,45 +13,42 @@ export class AppComponent implements OnInit {
 
   form: boolean = false;
   closeResult!: string;
-  listContrats: any;
-  contrat!:any;
+  listpistes: any;
+  piste!:any;
 
-  constructor(private contraService: NomDuServiceService, private modalService: NgbModal ) { }
+  constructor(private pisteService: NomDuServiceService, private modalService: NgbModal ) { }
 
   ngOnInit(): void {
-    this.getAllContrat();
-    console.log(this.listContrats)
-    this.contrat={
-      idContrat : null,
-      dateDebutContrat: null,
-      dateFinContrat:null,
-      specialite : null,
-      archived :null,
-      montantContrat:null
+    this.getAllpiste();
+    console.log(this.listpistes)
+    this.piste={
+      numPiste : null,
+      namePiste: null,
+      color:null,
+      length : null,
+      slope :null
     }
+
   }
 
-  getAllContrat(){
-    return this.contraService.getAllContrat().subscribe(res=>{
-      this.listContrats = res;
+  getAllpiste(){
+    return this.pisteService.getAllPiste().subscribe(res=>{
+      this.listpistes = res;
     });
   }
-  addContrat(c: any) {
-    this.contraService.addContrat(c).subscribe(() => {
-      this.getAllContrat();
+  addpiste(p: any) {
+    this.pisteService.addPiste(p).subscribe(() => {
+      this.getAllpiste();
       this.form = false;
     });
   }
 
-  editContrat(contrat: contrat) {
-    this.contraService.editContrat(contrat).subscribe();
-  }
 
   open(content: any, action: any) {
     if (action != null)
-      this.contrat = action
+      this.piste = action
     else
-      this.contrat = new contrat();
+      this.piste = new piste();
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
