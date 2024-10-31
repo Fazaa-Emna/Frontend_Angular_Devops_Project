@@ -9,7 +9,7 @@ import { piste } from './Piste';
 export class NomDuServiceService {
 
  
-  readonly API_URL = 'http://192.168.50.4/:8089/api/psite';
+  readonly API_URL = 'http://192.168.50.4:8089/api/psite';
 
   constructor(private httpClient: HttpClient) { }
   getAllPiste() {
