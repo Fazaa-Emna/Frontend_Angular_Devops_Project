@@ -9,7 +9,7 @@ import { piste } from './Piste';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'kaddemFront';
+  title = 'gestionSkiFront';
 
   form: boolean = false;
   closeResult!: string;
